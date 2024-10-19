@@ -2,6 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
+NMAX = 10
+A = 1.0
+F = lambda x: x**2
+M = 9.11e-31 # massa elettrone
+H_BAR = 1.05e-34 # costante planck / 2 pi
+
 '''
 il programma si articola in tre passaggi: 
 
@@ -50,12 +56,6 @@ Dovrei salvare questo valore a ogni iterazione? Ma come faccio se phi_n e' una f
 '''
 
 def main():
-    nMax = 10
-    a = 1.0
-    m = 9.11e-31 # massa elettrone
-    h_bar = 1.05e-34 # costante planck / 2 pi
-
-    f = lambda x: x**2
 
     dn_s = monte_carlo_for_ns(nMax, a, f)
 
@@ -63,9 +63,8 @@ def main():
     # Per ora fisso x e t come singoli valori, ma dovrei definire t come una coordinata temporale (np.linspace?)
     # Se no come faccio a fare il plot? 
     # x lo fisso a un singolo valore? 
-    x = 0.5  # Un valore di x nel range [0, a]
-    t = 1e-15  # Tempo t
-
+    x_cord = np.linspace(0,A, 1000)
+    t = 1
     psi_val = psi(x, t, dn_s, nMax, h_bar, m, a)
 
     # Stampa il risultato
